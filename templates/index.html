@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Face Detector</title>
+</head>
+<body>
+
+    <h1>Upload new File</h1>
+    <form method=post enctype=multipart/form-data>
+	    <input type=file name=file>
+	    <input type=submit value=Upload>
+	</form>
+
+    {% if faces %}
+        <img src={{ img_link }} alt="">
+        <h2> Detected {{ faces|length }} faces</h2>
+        {% for i in range(faces|length) %}
+            <h3> {{ faces[i]['id'] }} </h3>
+            {% for key,value in faces[i].items() %}
+                <p> - {{ key }}: {{ value }} </p>
+            {% endfor %}
+        {% endfor %}
+        <h3> Detection took {{ time }} seconds. </h3>
+    {% endif %}
+
+</body>
+</html>
